@@ -1,0 +1,10 @@
+UPDATE tblEntServices
+SET serviceName= Results, resourceAction = '#'
+WHERE entServiceID=137;
+
+
+insert into  tblEntServices (entServiceID,serviceName,serviceOrder,globalOrderBy,resourceAction ,resourceType,parentServiceID,serviceDesc,serviceGroup,Read_Attri,Write_Attri,Delete_Attri,Approve_Attri,Export_Attri,isEntitlable,displayIndicator,isChild,MenuIcon,isRoleRestricted,allowedRoles,KProductID)
+      values(138,'Exceptions',30,30,'/pages/Exceptions','menu_service',46,NULL,NULL,'True','True','True','True','True',	NULL,NULL,'False',NULL,NULL,NULL,2200)
+      
+      
+insert into tblEntServiceUserGroup(EntServiceID,UserGroupID,ServiceAttribute)values(138,4,'10000');

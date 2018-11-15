@@ -1,0 +1,87 @@
+﻿.btn.btn-app {
+    position: relative;
+    padding: 15px 5px;
+    margin: 0 0 10px 10px;
+    min-width: 150px;
+    height: 125px;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    border-radius: 0;
+    text-align: center;
+    color: #080202;
+    border: 1px solid #0b0a0a;
+    background-color: #3c8dbc !important;
+    font-size: 14px;
+}
+.btn.btn-info:hover, .btn.btn-info:active, .btn.btn-info.hover {
+    background-color: #007bd6;
+}
+
+#dvPreview {
+    position: relative;
+    height: auto;
+    border: 1px dashed #aaa;
+    border-radius: 4px;
+    text-align: center;
+    filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=image);
+    min-height: 612px; 
+    min-width: 300px;
+    padding: 10px 10px 10px 10px;
+    background-color: beige;
+    margin-bottom: 15px;
+    margin-top: 0Px;
+}
+.title{
+    display: inline-block;
+    padding: 10px 10px 10px 10px;
+    margin: 0;
+    margin-left:10px;
+    font-size: 20px;
+    font-weight: 400;
+    float: left;
+    cursor: default;
+}
+
+.upload{
+    display: inline-block;
+    padding: 10px 10px 10px 10px;
+    margin: 0;
+    
+    font-size: 14px;
+    font-weight: 400;
+    float: left;
+    cursor: default;
+}
+.spceimenbox{
+    text-align: center;
+ height: auto;
+text-align: center; 
+padding: 5px 5px 5px 5px;
+ margin-left: 5px; 
+margin-right: 5px;
+ background-color: beige;
+ margin-top:15px;
+ margin-bottom:10px;
+}
+
+#stSpnum {
+    font-size: 62px;
+}
+.toggle.ios, .toggle-on.ios, .toggle-off.ios { border-radius: 10px; }
+  .toggle.ios .toggle-handle { border-radius: 10px; }
+
+    
+@media (max-width: 600px) {
+    #stSpnum {
+        font-size: 28px !important;
+    }
+}
+   
+ @media only screen and (max-width: 320Px) {
+    body {
+        background-color: lightblue;
+    }
+}

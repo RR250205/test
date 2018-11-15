@@ -1,0 +1,2 @@
+
+Alter table stblCustomer  add Specialization nvarchar(50)null

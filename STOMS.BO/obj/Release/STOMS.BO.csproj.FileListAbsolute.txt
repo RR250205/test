@@ -1,0 +1,6 @@
+E:\Maran\kolims\7-11-18\PRO-LMS20180001\STOMS.BO\bin\Release\STOMS.BO.dll
+E:\Maran\kolims\7-11-18\PRO-LMS20180001\STOMS.BO\bin\Release\STOMS.BO.pdb
+E:\Maran\kolims\7-11-18\PRO-LMS20180001\STOMS.BO\obj\Release\STOMS.BO.csprojAssemblyReference.cache
+E:\Maran\kolims\7-11-18\PRO-LMS20180001\STOMS.BO\obj\Release\STOMS.BO.csproj.CoreCompileInputs.cache
+E:\Maran\kolims\7-11-18\PRO-LMS20180001\STOMS.BO\obj\Release\STOMS.BO.dll
+E:\Maran\kolims\7-11-18\PRO-LMS20180001\STOMS.BO\obj\Release\STOMS.BO.pdb

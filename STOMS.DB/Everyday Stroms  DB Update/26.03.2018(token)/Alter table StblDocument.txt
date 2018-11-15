@@ -1,0 +1,1 @@
+Alter table stblDocuments Add TokenID nvarchar(50),ValidUpto datetime

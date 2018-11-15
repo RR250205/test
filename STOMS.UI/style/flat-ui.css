@@ -1,0 +1,86 @@
+.ui-slider {
+  background: #ebedef;
+  border-radius: 32px;
+  height: 12px;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  filter: unquote("progid:DXImageTransform.Microsoft.gradient(enabled = false)");
+  margin-bottom: 20px;
+  position: relative;
+}
+.ui-slider .bar {
+  background: #1abc9c;
+  -webkit-box-shadow: none !important;
+  -moz-box-shadow: none !important;
+  box-shadow: none !important;
+  filter: unquote("progid:DXImageTransform.Microsoft.gradient(enabled = false)");
+}
+.ui-slider .bar-success {
+  background-color: #2ecc71;
+  filter: unquote("progid:DXImageTransform.Microsoft.gradient(enabled = false)");
+}
+.ui-slider .bar-warning {
+  background-color: #f1c40f;
+  filter: unquote("progid:DXImageTransform.Microsoft.gradient(enabled = false)");
+}
+.ui-slider .bar-danger {
+  background-color: #e74c3c;
+  filter: unquote("progid:DXImageTransform.Microsoft.gradient(enabled = false)");
+}
+.ui-slider .bar-info {
+  background-color: #3498db;
+  filter: unquote("progid:DXImageTransform.Microsoft.gradient(enabled = false)");
+}
+.ui-slider-handle {
+  background-color: #16a085;
+  border-radius: 50%;
+  cursor: pointer;
+  height: 18px;
+  margin-left: -9px;
+  position: absolute;
+  top: -3px;
+  width: 18px;
+  z-index: 2;
+  -webkit-transition: background 0.25s;
+  -moz-transition: background 0.25s;
+  -o-transition: background 0.25s;
+  transition: background 0.25s;
+  -webkit-backface-visibility: hidden;
+}
+.ui-slider-handle[style*='100'] {
+  margin-left: -15px;
+}
+.ui-slider-handle:hover,
+.ui-slider-handle:focus {
+  background-color: #48c9b0;
+  outline: none;
+}
+.ui-slider-handle:active {
+  background-color: #16a085;
+}
+.ui-slider-range {
+  background-color: #1abc9c;
+  border-radius: 30px 0 0 30px;
+  display: block;
+  height: 100%;
+  position: absolute;
+  z-index: 1;
+}
+.ui-slider-segment {
+  background-color: #d9dbdd;
+  border-radius: 50%;
+  float: left;
+  height: 6px;
+  margin: 3px -6px 0 0;
+  width: 6px;
+}
+.ui-slider-value {
+  float: right;
+  font-weight: 500;
+  margin-top: 12px;
+}
+.ui-slider-value.first {
+  clear: left;
+  float: left;
+}

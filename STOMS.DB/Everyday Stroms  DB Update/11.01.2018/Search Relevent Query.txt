@@ -1,0 +1,324 @@
+USE [kosoft_canary]
+GO
+EXEC sys.sp_dropextendedproperty @name=N'MS_DiagramPaneCount' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'VIEW',@level1name=N'svwSpecimenCustomer'
+
+GO
+EXEC sys.sp_dropextendedproperty @name=N'MS_DiagramPane2' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'VIEW',@level1name=N'svwSpecimenCustomer'
+
+GO
+EXEC sys.sp_dropextendedproperty @name=N'MS_DiagramPane1' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'VIEW',@level1name=N'svwSpecimenCustomer'
+
+GO
+/****** Object:  View [dbo].[svwSpecimenCustomer]    Script Date: 1/11/2018 11:32:20 AM ******/
+DROP VIEW [dbo].[svwSpecimenCustomer]
+GO
+/****** Object:  Table [dbo].[tblSearchQuery]    Script Date: 1/11/2018 11:32:20 AM ******/
+DROP TABLE [dbo].[tblSearchQuery]
+GO
+/****** Object:  Table [dbo].[tblSearchProfile]    Script Date: 1/11/2018 11:32:20 AM ******/
+DROP TABLE [dbo].[tblSearchProfile]
+GO
+/****** Object:  Table [dbo].[tblSearchProfile]    Script Date: 1/11/2018 11:32:20 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+SET ANSI_PADDING ON
+GO
+CREATE TABLE [dbo].[tblSearchProfile](
+	[SeaProfileID] [int] IDENTITY(1,1) NOT NULL,
+	[SeaProfileName] [varchar](50) NULL,
+	[DBObjectName] [varchar](50) NULL,
+	[SeaSQL] [varchar](3000) NULL,
+	[TenantID] [int] NULL
+) ON [PRIMARY]
+
+GO
+SET ANSI_PADDING OFF
+GO
+/****** Object:  Table [dbo].[tblSearchQuery]    Script Date: 1/11/2018 11:32:20 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+SET ANSI_PADDING ON
+GO
+CREATE TABLE [dbo].[tblSearchQuery](
+	[SeaQueryID] [int] IDENTITY(1,1) NOT NULL,
+	[SeaProfileID] [varchar](50) NULL,
+	[SeaSQL] [varchar](3000) NULL,
+	[RedirectPage] [varchar](500) NULL,
+	[IconIndicator] [varchar](30) NULL
+) ON [PRIMARY]
+
+GO
+SET ANSI_PADDING OFF
+GO
+/****** Object:  View [dbo].[svwSpecimenCustomer]    Script Date: 1/11/2018 11:32:20 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE VIEW [dbo].[svwSpecimenCustomer]
+AS
+SELECT        dbo.svwSpecimenInfo.*, dbo.stblCustomer.CustID, dbo.stblCustomer.CustNumber, dbo.stblCustomer.CustomerName, dbo.stblCustomer.FirstName, dbo.stblCustomer.LastName, dbo.stblCustomer.Email, 
+                         dbo.stblCustomer.Phone, dbo.stblCustomer.Address1, dbo.stblCustomer.Address2, dbo.stblCustomer.City, dbo.stblCustomer.Zipcode, dbo.stblCustomer.State, dbo.stblCustomer.Country, dbo.stblCustomer.Notes, 
+                         dbo.stblCustomer.ShipName, dbo.stblCustomer.ShipAddress1, dbo.stblCustomer.ShipAddress2, dbo.stblCustomer.ShipCity, dbo.stblCustomer.ShipZipCode, dbo.stblCustomer.ShipState, dbo.stblCustomer.ShipCountry, 
+                         dbo.stblCustomer.BillName, dbo.stblCustomer.BillAddress1, dbo.stblCustomer.BillAddress2, dbo.stblCustomer.BillCity, dbo.stblCustomer.BillState, dbo.stblCustomer.BillZipCode, dbo.stblCustomer.BillCountry, 
+                         dbo.stblCustomer.IsPremium, dbo.stblCustomer.IsMembership, dbo.stblCustomer.CustStatus, dbo.stblCustomer.IsCorporate, dbo.stblCustomer.MemberSince, dbo.stblCustomer.CustomerTier, dbo.stblCustomer.Fax, 
+                         dbo.stblCustomer.Diagnosis, dbo.stblCustomer.DiagnosisCode, dbo.stblCustomer.ResultType, dbo.stblCustomer.Facility, dbo.stblCustomer.RequesterType, dbo.stblCustomer.Message, 
+                         dbo.stblCustomer.TenantID AS CustomerTenantID
+FROM            dbo.stblCustomer INNER JOIN
+                         dbo.svwSpecimenInfo ON dbo.stblCustomer.CustID = dbo.svwSpecimenInfo.CustomerID
+
+GO
+SET IDENTITY_INSERT [dbo].[tblSearchProfile] ON 
+
+GO
+INSERT [dbo].[tblSearchProfile] ([SeaProfileID], [SeaProfileName], [DBObjectName], [SeaSQL], [TenantID]) VALUES (1, N'Main Search', NULL, N'select CustomerName as MainTitle, CustNumber as Sub1, Phone as Sub2, City as Sub3, State as Sub4 from stblCustomer where TenantID=@TenantID', 1)
+GO
+INSERT [dbo].[tblSearchProfile] ([SeaProfileID], [SeaProfileName], [DBObjectName], [SeaSQL], [TenantID]) VALUES (2, N'Main Search', NULL, N'select CustomerName as MainTitle, CustNumber as Sub1, Phone as Sub2, City as Sub3, State as Sub4 from stblCustomer where TenantID=@TenantID', 2)
+GO
+INSERT [dbo].[tblSearchProfile] ([SeaProfileID], [SeaProfileName], [DBObjectName], [SeaSQL], [TenantID]) VALUES (3, N'Specimen', NULL, N'
+select SpecimenNumber as MainTitle,  convert(varchar(50),DateDrawn) as Sub1,SpecimenStatus as Sub2,'''' as Sub3, '''' as Sub4
+from svwSpecimenInfo where TenantID=@TenantID', 2)
+GO
+INSERT [dbo].[tblSearchProfile] ([SeaProfileID], [SeaProfileName], [DBObjectName], [SeaSQL], [TenantID]) VALUES (4, N'Assay', NULL, N'select AssayBIN as MainTitle, convert(varchar(50),AssayLoadDateTime) as Sub1, convert(varchar(50),AssayCompleteDateTime) as Sub2,AssayStatus as Sub3, '''' as Sub4 
+from svwAssaySpecimens where TenantID=@TenantID', 2)
+GO
+INSERT [dbo].[tblSearchProfile] ([SeaProfileID], [SeaProfileName], [DBObjectName], [SeaSQL], [TenantID]) VALUES (5, N'Main Search', NULL, N'select CustomerName as MainTitle, CustNumber as Sub1, Phone as Sub2, City as Sub3, State as Sub4 from stblCustomer where TenantID=@TenantID', 4)
+GO
+INSERT [dbo].[tblSearchProfile] ([SeaProfileID], [SeaProfileName], [DBObjectName], [SeaSQL], [TenantID]) VALUES (6, N'Specimen', NULL, N'
+select SpecimenNumber as MainTitle,  convert(varchar(50),DateDrawn) as Sub1,SpecimenStatus as Sub2,'''' as Sub3, '''' as Sub4
+from svwSpecimenInfo where TenantID=@TenantID', 4)
+GO
+INSERT [dbo].[tblSearchProfile] ([SeaProfileID], [SeaProfileName], [DBObjectName], [SeaSQL], [TenantID]) VALUES (7, N'Assay', NULL, N'select AssayBIN as MainTitle, convert(varchar(50),AssayLoadDateTime) as Sub1, convert(varchar(50),AssayCompleteDateTime) as Sub2,AssayStatus as Sub3, '''' as Sub4 
+from svwAssaySpecimens where TenantID=@TenantID', 4)
+GO
+SET IDENTITY_INSERT [dbo].[tblSearchProfile] OFF
+GO
+SET IDENTITY_INSERT [dbo].[tblSearchQuery] ON 
+
+GO
+INSERT [dbo].[tblSearchQuery] ([SeaQueryID], [SeaProfileID], [SeaSQL], [RedirectPage], [IconIndicator]) VALUES (1, N'1', N'select CustomerName as MainTitle, CustNumber as Sub1, Phone as Sub2, City as Sub3, State as Sub4 from stblCustomer where CustomerName like ''%@@@@@%'' and TenantID=@TenantID', NULL, NULL)
+GO
+INSERT [dbo].[tblSearchQuery] ([SeaQueryID], [SeaProfileID], [SeaSQL], [RedirectPage], [IconIndicator]) VALUES (2, N'1', N'select SpecimenNumber as MainTitle, convert(varchar(50),DateDrawn) as Sub1,SpecimenStatus as Sub2,'''' as Sub3, '''' as Sub4 from svwSpecimenInfo where SpecimenNumber like ''%@@@@@%'' and TenantID=@TenantID', NULL, NULL)
+GO
+INSERT [dbo].[tblSearchQuery] ([SeaQueryID], [SeaProfileID], [SeaSQL], [RedirectPage], [IconIndicator]) VALUES (3, N'2', N'select CustomerName as MainTitle, CustNumber as Sub1, Phone as Sub2, City as Sub3, State as Sub4 from stblCustomer where CustomerName like ''%@@@@@%'' and TenantID=@TenantID', NULL, NULL)
+GO
+INSERT [dbo].[tblSearchQuery] ([SeaQueryID], [SeaProfileID], [SeaSQL], [RedirectPage], [IconIndicator]) VALUES (4, N'2', N'select SpecimenNumber as MainTitle, convert(varchar(50),DateDrawn) as Sub1,SpecimenStatus as Sub2,'''' as Sub3, '''' as Sub4 from svwSpecimenInfo where SpecimenNumber like ''%@@@@@%'' and TenantID=@TenantID', NULL, NULL)
+GO
+INSERT [dbo].[tblSearchQuery] ([SeaQueryID], [SeaProfileID], [SeaSQL], [RedirectPage], [IconIndicator]) VALUES (5, N'3', N'select SpecimenNumber as MainTitle, convert(varchar(50),DateDrawn) as Sub1,SpecimenStatus as Sub2,'''' as Sub3, '''' as Sub4 from svwSpecimenInfo where SpecimenNumber like ''%@@@@@%'' and TenantID=@TenantID', NULL, NULL)
+GO
+INSERT [dbo].[tblSearchQuery] ([SeaQueryID], [SeaProfileID], [SeaSQL], [RedirectPage], [IconIndicator]) VALUES (6, N'4', N'select AssayBIN as MainTitle, convert(varchar(50),AssayLoadDateTime) as Sub1, convert(varchar(50),AssayCompleteDateTime) as Sub2,AssayStatus as Sub3, '''' as Sub4 
+from svwAssaySpecimens where AssayBIN like ''%@@@@@%'' and TenantID=@TenantID', NULL, NULL)
+GO
+INSERT [dbo].[tblSearchQuery] ([SeaQueryID], [SeaProfileID], [SeaSQL], [RedirectPage], [IconIndicator]) VALUES (7, N'3', N'select SpecimenNumber as MainTitle, convert(varchar(50),DateDrawn) as Sub1,SpecimenStatus as Sub2,'''' as Sub3, '''' as Sub4 from svwSpecimenCustomer where CustomerName like ''%@@@@@%'' or FirstName like ''%@@@@@%'' or LastName like ''%@@@@@%'' and TenantID=@TenantID', NULL, NULL)
+GO
+INSERT [dbo].[tblSearchQuery] ([SeaQueryID], [SeaProfileID], [SeaSQL], [RedirectPage], [IconIndicator]) VALUES (8, N'5', N'select CustomerName as MainTitle, CustNumber as Sub1, Phone as Sub2, City as Sub3, State as Sub4 from stblCustomer where CustomerName like ''%@@@@@%'' and TenantID=@TenantID', NULL, NULL)
+GO
+INSERT [dbo].[tblSearchQuery] ([SeaQueryID], [SeaProfileID], [SeaSQL], [RedirectPage], [IconIndicator]) VALUES (9, N'5', N'select SpecimenNumber as MainTitle, convert(varchar(50),DateDrawn) as Sub1,SpecimenStatus as Sub2,'''' as Sub3, '''' as Sub4 from svwSpecimenInfo where SpecimenNumber like ''%@@@@@%'' and TenantID=@TenantID', NULL, NULL)
+GO
+INSERT [dbo].[tblSearchQuery] ([SeaQueryID], [SeaProfileID], [SeaSQL], [RedirectPage], [IconIndicator]) VALUES (10, N'6', N'select SpecimenNumber as MainTitle, convert(varchar(50),DateDrawn) as Sub1,SpecimenStatus as Sub2,'''' as Sub3, '''' as Sub4 from svwSpecimenInfo where SpecimenNumber like ''%@@@@@%'' and TenantID=@TenantID', NULL, NULL)
+GO
+INSERT [dbo].[tblSearchQuery] ([SeaQueryID], [SeaProfileID], [SeaSQL], [RedirectPage], [IconIndicator]) VALUES (11, N'6', N'select SpecimenNumber as MainTitle, convert(varchar(50),DateDrawn) as Sub1,SpecimenStatus as Sub2,'''' as Sub3, '''' as Sub4 from svwSpecimenCustomer where CustomerName like ''%@@@@@%'' or FirstName like ''%@@@@@%'' or LastName like ''%@@@@@%'' and TenantID=@TenantID', NULL, NULL)
+GO
+INSERT [dbo].[tblSearchQuery] ([SeaQueryID], [SeaProfileID], [SeaSQL], [RedirectPage], [IconIndicator]) VALUES (12, N'7', N'select AssayBIN as MainTitle, convert(varchar(50),AssayLoadDateTime) as Sub1, convert(varchar(50),AssayCompleteDateTime) as Sub2,AssayStatus as Sub3, '''' as Sub4 
+from svwAssaySpecimens where AssayBIN like ''%@@@@@%'' and TenantID=@TenantID', NULL, NULL)
+GO
+SET IDENTITY_INSERT [dbo].[tblSearchQuery] OFF
+GO
+EXEC sys.sp_addextendedproperty @name=N'MS_DiagramPane1', @value=N'[0E232FF0-B466-11cf-A24F-00AA00A3EFFF, 1.00]
+Begin DesignProperties = 
+   Begin PaneConfigurations = 
+      Begin PaneConfiguration = 0
+         NumPanes = 4
+         Configuration = "(H (1[41] 4[20] 2[13] 3) )"
+      End
+      Begin PaneConfiguration = 1
+         NumPanes = 3
+         Configuration = "(H (1 [50] 4 [25] 3))"
+      End
+      Begin PaneConfiguration = 2
+         NumPanes = 3
+         Configuration = "(H (1 [50] 2 [25] 3))"
+      End
+      Begin PaneConfiguration = 3
+         NumPanes = 3
+         Configuration = "(H (4 [30] 2 [40] 3))"
+      End
+      Begin PaneConfiguration = 4
+         NumPanes = 2
+         Configuration = "(H (1 [56] 3))"
+      End
+      Begin PaneConfiguration = 5
+         NumPanes = 2
+         Configuration = "(H (2 [66] 3))"
+      End
+      Begin PaneConfiguration = 6
+         NumPanes = 2
+         Configuration = "(H (4 [50] 3))"
+      End
+      Begin PaneConfiguration = 7
+         NumPanes = 1
+         Configuration = "(V (3))"
+      End
+      Begin PaneConfiguration = 8
+         NumPanes = 3
+         Configuration = "(H (1[56] 4[18] 2) )"
+      End
+      Begin PaneConfiguration = 9
+         NumPanes = 2
+         Configuration = "(H (1 [75] 4))"
+      End
+      Begin PaneConfiguration = 10
+         NumPanes = 2
+         Configuration = "(H (1[66] 2) )"
+      End
+      Begin PaneConfiguration = 11
+         NumPanes = 2
+         Configuration = "(H (4 [60] 2))"
+      End
+      Begin PaneConfiguration = 12
+         NumPanes = 1
+         Configuration = "(H (1) )"
+      End
+      Begin PaneConfiguration = 13
+         NumPanes = 1
+         Configuration = "(V (4))"
+      End
+      Begin PaneConfiguration = 14
+         NumPanes = 1
+         Configuration = "(V (2))"
+      End
+      ActivePaneConfig = 0
+   End
+   Begin DiagramPane = 
+      Begin Origin = 
+         Top = 0
+         Left = 0
+      End
+      Begin Tables = 
+         Begin Table = "stblCustomer"
+            Begin Extent = 
+               Top = 6
+               Left = 38
+               Bottom = 136
+               Right = 211
+            End
+            DisplayFlags = 280
+            TopColumn = 35
+         End
+         Begin Table = "svwSpecimenInfo"
+            Begin Extent = 
+               Top = 6
+               Left = 249
+               Bottom = 136
+               Right = 448
+            End
+            DisplayFlags = 280
+            TopColumn = 0
+         End
+      End
+   End
+   Begin SQLPane = 
+   End
+   Begin DataPane = 
+      Begin ParameterDefaults = ""
+      End
+      Begin ColumnWidths = 69
+         Width = 284
+         Width = 1500
+         Width = 1500
+         Width = 1500
+         Width = 1500
+         Width = 1500
+         Width = 1500
+         Width = 1500
+         Width = 1500
+         Width = 1500
+         Width = 1500
+         Width = 1500
+         Width = 1500
+         Width = 1500
+         Width = 1500
+         Width = 1500
+         Width = 1500
+         Width = 1500
+         Width = 1500
+         Width = 1500
+         Width = 1500
+         Width = 1500
+         Width = 1500
+         Width = 1500
+         Width = 1500
+         Width = 1500
+         Width = 1500
+         Width = 1500
+         Width = 1500
+         Width = 1500
+         Width = 1500
+         Width = 1500
+         Width = 1500
+         Width = 1500
+         Width = 1500
+         Width = 1500
+         Width = 1500
+         Width = 1500
+         Width = 1500
+         Width = 1500
+         Width = 1500
+         Width = 1500
+         Width = 1500
+         Width = 1500
+         Width = 1500
+         Width = 1500
+         Width = 1500
+         Width = 1500
+      ' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'VIEW',@level1name=N'svwSpecimenCustomer'
+GO
+EXEC sys.sp_addextendedproperty @name=N'MS_DiagramPane2', @value=N'   Width = 1500
+         Width = 1500
+         Width = 1500
+         Width = 1500
+         Width = 1500
+         Width = 1500
+         Width = 1500
+         Width = 1500
+         Width = 1500
+         Width = 1500
+         Width = 1500
+         Width = 1500
+         Width = 1500
+         Width = 1500
+         Width = 1500
+         Width = 1500
+         Width = 1500
+         Width = 1500
+         Width = 1500
+         Width = 1500
+         Width = 1500
+      End
+   End
+   Begin CriteriaPane = 
+      Begin ColumnWidths = 11
+         Column = 1440
+         Alias = 900
+         Table = 1170
+         Output = 720
+         Append = 1400
+         NewValue = 1170
+         SortType = 1350
+         SortOrder = 1410
+         GroupBy = 1350
+         Filter = 1350
+         Or = 1350
+         Or = 1350
+         Or = 1350
+      End
+   End
+End
+' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'VIEW',@level1name=N'svwSpecimenCustomer'
+GO
+EXEC sys.sp_addextendedproperty @name=N'MS_DiagramPaneCount', @value=2 , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'VIEW',@level1name=N'svwSpecimenCustomer'
+GO

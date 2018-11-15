@@ -1,0 +1,314 @@
+﻿
+<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="MasterNoLeftNav.master.cs" Inherits="STOMS.UI.themes.MasterNoLeftNav" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title>Sample Testing Order and Reporting Management System (STORMS)</title>
+   <%-- <title>Laboratory Information Management System(LIMS)</title>--%>
+    <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport' />
+    <!-- basic styles -->
+    <link href="/assets/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="/assets/css/font-awesome.min.css" />
+
+    <!--[if IE 7]>
+		  <link rel="stylesheet" href="/assets/css/font-awesome-ie7.min.css" />
+		<![endif]-->
+
+    <!-- page custom styles -->
+    <!-- fonts -->
+    <link rel="stylesheet" href="/style/custom.css" />
+    <link rel="stylesheet" href="/style/custom2.css" />
+    <!-- page specific plugin styles -->
+
+    <link rel="stylesheet" href="/assets/css/jquery-ui-1.10.3.full.min.css" />
+    <link rel="stylesheet" href="/assets/css/chosen.css" />
+    <!-- fonts -->
+    <link rel="stylesheet" href="/assets/css/ace-fonts.css" />
+
+    <!-- ace styles -->
+    <link rel="stylesheet" href="/assets/css/ace.min.css" />
+    <link rel="stylesheet" href="/assets/css/ace-rtl.min.css" />
+    <link rel="stylesheet" href="/assets/css/ace-skins.min.css" />
+
+    <!--[if lte IE 8]>
+		  <link rel="stylesheet" href="/assets/css/ace-ie.min.css" />
+		<![endif]-->
+
+    <!-- inline styles related to this page -->
+
+    <!-- ace settings handler -->
+
+    <script src="/assets/js/ace-extra.min.js"></script>
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+
+    <!--[if lt IE 9]>
+		<script src="/assets/js/html5shiv.js"></script>
+		<script src="/assets/js/respond.min.js"></script>
+		<![endif]-->
+    <link rel="stylesheet" href="/style/custom.css" />
+
+    <style>
+        
+        li{
+        margin-bottom: 5px;
+        }
+
+        
+        .menu-text {
+            margin-left: 10px;
+        }
+      .dropdown-menu li.active a
+      {
+       background:none;
+       color:#0c0c0c;
+       font-weight:normal;
+     
+    }
+      .nav-list li.active a:after
+       {
+          content:none;
+          border-right-color:none;
+        }
+     
+      .nav-list li.active:after {
+               
+      border: 0px solid #0a0a0a;
+  }
+
+      #user_menu li{
+          border-bottom:none;
+           margin-bottom:-5px;
+            }
+
+      .mylabs{
+            margin-left: 12px;
+            font-size: 12px;
+            color: lightgray;
+           
+        }
+       #user_menu i{
+         font-size:16px;
+      }
+        #user_menu {
+         width:55%; }
+
+    </style>
+</head>
+
+<body>
+    <form id="form1" runat="server">
+        <asp:HiddenField ID="hActType" runat="server" />
+        <asp:LinkButton ID="lbtnSet" runat="server" Text="" OnClick="lbtnSet_Click"></asp:LinkButton>
+
+        <div class="navbar navbar-default" id="navbar" style="border-radius: 0px; height: 50px;">
+            <script type="text/javascript">
+                try { ace.settings.check('navbar', 'fixed') } catch (e) { }
+            </script>
+
+            <div class="navbar-container" style="background-color: #808080 !important;" id="navbar-container">
+                <div class="navbar-header pull-left">
+                    <a href="../pages/dashboard" class="navbar-brand" style="width: 220px;line-height: 50px;text-align: center;padding-top: 0px;padding-bottom: 0px;">
+                        <i class=" icon-beaker white" style="margin-left: -20px;"></i>
+                        <span class="white" style="font-size:24px">LIMS</span>
+                    </a>
+                    <a href="../pages/dashboard" class="navbar-brand" style="width: 220px;line-height: 50px;text-align: center;padding-top: 0px;padding-bottom: 0px;">
+                        <i class=" icon-dashboard white" style="margin-left:-36px;"></i>
+                        
+                        <span class="white" style="font-size:20px">Go to Dashboard</span>
+                       
+                    </a>
+
+                    <!-- /.brand -->
+                </div>
+                <!-- /.navbar-header -->
+
+                <div class="navbar-header pull-right" role="navigation">
+                    <ul class="nav ace-nav" style="width:100%;">
+                        <li class="light-blue" style="font-family: sans-serif;font-size: 13px;">
+                            <a data-toggle="dropdown" href="#" class="dropdown-toggle" style="background-color: #438eb9; color:white;" >
+                                <span id="spanCompanyName" runat="server"></span>
+                                <span class="user-info" style="max-width: 150px;top:15px;">
+                                    <small style="display:inline-block;">Welcome,</small>
+                                    <span id="spanRightTopUserFullName" runat="server"></span>
+                                </span>
+                                <i class="icon-caret-down" ></i>
+                            </a>
+                            <ul class="user-menu pull-right dropdown-menu dropdown-white dropdown-caret dropdown-close" runat="server" id="user_menu">
+                               <%-- <li runat="server" id="liSetting" visible="false"><a href="javascript:TMenuAction('SE');"><i class="icon-cog"></i>My Settings </a></li>
+                                <li runat="server" id="liProfile"><a href="javascript:TMenuAction('PR');"><i class="icon-user"></i>My Profile </a></li>
+                                <li runat="server" id="liOrgProfile"><a href="javascript:TMenuAction('ORG');"><i class="icon-building"></i>Org Profile </a></li>
+                                <li runat="server" id="liPass"><a href="javascript:TMenuAction('PW');"><i class="icon-key"></i>Change Password</a></li>
+                                <li runat="server" id="liChangeRole" visible="false"><a href="javascript:TMenuAction('CR');"><i class="icon-exchange"></i>Change Role</a></li>
+                                <li runat="server" id="liLicense" visible="false"><a href="javascript:TMenuAction('LI');"><i class="icon-shield"></i>Company Profile</a></li>
+                                <li runat="server" id="liDiv1" class="divider"></li>
+                                <li runat="server" id="liLogout"><a href="javascript:TMenuAction('LO');"><i class="icon-off"></i>Logout </a></li>--%>
+                            </ul>
+                        </li>
+                    </ul>
+                    <!-- /.ace-nav -->
+                </div>
+                <!-- /.navbar-header -->
+            </div>
+            <!-- /.container -->
+        </div>
+        <!-- Main content -->
+        <div class="row" style="background:white; border-bottom:solid 1px; border-bottom-color:#dbdbdb; " runat="server" >
+            <div class="col-lg-9 col-md-9 col-sm-7 col-xs-12" style="padding-bottom: 16px; padding-left: 20px; font-family:Open Sans;" >
+                <h3>New Specimen Entry Form </h3>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-5 col-xs-12" style="margin-top: 20px;">
+                <asp:Panel runat="server" ID="searchPanel" DefaultButton="btnSearch">
+                    <asp:TextBox ID="txtSearch" runat="server" placeholder="Search" Style="height: 30px; text-align: center;" ValidationGroup="vdgSearchModel"></asp:TextBox>
+                    <asp:LinkButton ID="btnSearch" CssClass="btn btn-success" runat="server" Text="Search" OnClick="btnSearch_Click" Style="height: 30px; text-align: center; margin-left: 3px; margin-top: -3px; padding: 0px;" ValidationGroup="vdgSearchModel">                                       
+                        Search
+                      <i class="icon-search" aria-hidden="true"></i>
+                    </asp:LinkButton>
+                    <br />
+                    <asp:RequiredFieldValidator CssClass="" ValidationGroup="vdgSearchModel" ID="rfSearch" ControlToValidate="txtSearch" Display="Dynamic" runat="server" ForeColor="Red" ErrorMessage="Please enter the Value!"></asp:RequiredFieldValidator>
+                </asp:Panel>
+            </div>
+           
+        </div>
+    
+        
+        <section class="content">
+            <asp:ScriptManager ID="ScriptMgr" runat="server">
+            </asp:ScriptManager>
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+            </asp:ContentPlaceHolder>
+        </section>
+
+        <script type="text/javascript">
+            function getPage(srvID) {
+                document.location = "/redirect.aspx?ID=" + srvID;
+            }
+
+            function TMenuAction(act) {
+                document.getElementById('hActType').value = act;
+                javascript: __doPostBack('ctl00$lbtnSet', '');
+                return false;
+            }
+
+        </script>
+    </form>
+
+    <!-- basic scripts -->
+    <!--[if !IE]> -->
+    <script type="text/javascript">
+        window.jQuery || document.write("<script src='/assets/js/jquery-2.0.3.min.js'>" + "<" + "/script>");
+    </script>
+    <!-- <![endif]-->
+
+    <!--[if IE]>
+        <script type="text/javascript">
+         window.jQuery || document.write("<script src='/assets/js/jquery-1.10.2.min.js'>"+"<"+"/script>");
+        </script>
+        <![endif]-->
+
+    <script type="text/javascript">
+        if ("ontouchend" in document) document.write("<script src='/assets/js/jquery.mobile.custom.min.js'>" + "<" + "/script>");
+    </script>
+    <script src="/assets/js/bootstrap.min.js"></script>
+    <script src="/assets/js/typeahead-bs2.min.js"></script>
+
+    <!-- page specific plugin scripts -->
+    <script src="/assets/js/jquery-ui-1.10.3.full.min.js"></script>
+    <script src="/assets/js/jquery.ui.touch-punch.min.js"></script>
+
+
+
+    <!--[if lte IE 8]>
+		  <script src="/assets/js/excanvas.min.js"></script>
+		<![endif]-->
+
+    <script src="/assets/js/jquery-ui-1.10.3.custom.min.js"></script>
+    <script src="/assets/js/chosen.jquery.min.js"></script>
+    <script src="/assets/js/jquery.ui.touch-punch.min.js"></script>
+    <script src="/assets/js/jquery.slimscroll.min.js"></script>
+    <script src="/assets/js/jquery.easy-pie-chart.min.js"></script>
+    <script src="/assets/js/jquery.sparkline.min.js"></script>
+    <script src="/assets/js/flot/jquery.flot.min.js"></script>
+    <script src="/assets/js/flot/jquery.flot.pie.min.js"></script>
+    <script src="/assets/js/flot/jquery.flot.resize.min.js"></script>
+
+    <script src="/assets/js/jquery.nestable.min.js"></script>
+
+    <!-- ace scripts -->
+    <script src="/assets/js/ace-elements.min.js"></script>
+    <script src="/assets/js/ace.min.js"></script>
+
+
+    <script type="text/javascript">
+        jQuery(function ($) {
+            $(".date-picker").datepicker({
+                showOtherMonths: true,
+                selectOtherMonths: false,
+                //isRTL:true,
+                /*
+                changeMonth: true,
+                changeYear: true,
+                
+                showButtonPanel: true,
+                beforeShow: function() {
+                    //change button colors
+                    var datepicker = $(this).datepicker( "widget" );
+                    setTimeout(function(){
+                        var buttons = datepicker.find('.ui-datepicker-buttonpane')
+                        .find('button');
+                        buttons.eq(0).addClass('btn btn-xs');
+                        buttons.eq(1).addClass('btn btn-xs btn-success');
+                        buttons.wrapInner('<span class="bigger-110" />');
+                    }, 0);
+                }
+        */
+            });
+            var oldie = /msie\s*(8|7|6)/.test(navigator.userAgent.toLowerCase());
+            $('.easy-pie-chart.percentage').each(function () {
+                $(this).easyPieChart({
+                    barColor: $(this).data('color'),
+                    trackColor: '#EEEEEE',
+                    scaleColor: false,
+                    lineCap: 'butt',
+                    lineWidth: 12,
+                    animate: oldie ? false : 1000,
+                    size: 100
+                }).css('color', $(this).data('color'));
+            });
+
+            //COMMENTED ON 1/14/17 --> THIS IS SAMPLECODETO CHANGE THE STYLE OF MULTI-SELECT DROP DOWN, AND THISISNOT REQUIRED
+            $(".chosen-select").chosen();
+            //$('#chosen-multiple-style').on('click', function (e) {
+            //    var target = $(e.target).find('input[type=radio]');
+            //    var which = parseInt(target.val());
+            //    /* if (which == 2) $('#form-field-select-4').addClass('tag-input-style');
+            //    else $('#form-field-select-4').removeClass('tag-input-style'); */
+            //    if (which == 2) $('#frmSel1').addClass('tag-input-style');
+            //    else $('#frmSel1').removeClass('tag-input-style');
+            //});
+
+            $('#id-input-file-1 , #id-input-file-2').ace_file_input({
+                no_file: 'No File ...',
+                btn_choose: 'Choose',
+                btn_change: 'Change',
+                droppable: false,
+                onchange: null,
+                thumbnail: false //| true | large
+                //whitelist:'gif|png|jpg|jpeg'
+                //blacklist:'exe|php'
+                //onchange:''
+                //
+            });
+
+
+            $('#dvRightPanel1').slimscroll({
+                size: '5px',
+                height: '700px'
+            });
+
+        });
+    </script>
+</body>
+</html>

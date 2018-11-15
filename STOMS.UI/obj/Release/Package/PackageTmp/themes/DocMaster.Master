@@ -1,0 +1,50 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="DocMaster.master.cs" Inherits="STOMS.UI.DocMaster" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <meta charset="UTF-8">
+  <title>Sample Testing Order and Reporting Management System (STORMS)</title>
+    <%--<title>Laboratory Information Management System(LIMS)</title>--%>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+        <link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+        <link href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+        <!-- Ionicons -->
+        <link href="http://code.ionicframework.com/ionicons/1.5.2/css/ionicons.min.css" rel="stylesheet" type="text/css" />
+        <!-- Date Picker -->
+        <link href="/style/css/datepicker/datepicker3.css" rel="stylesheet" type="text/css" />
+        <!-- Daterange picker -->
+        <link href="/style/css/daterangepicker/daterangepicker-bs3.css" rel="stylesheet" type="text/css" />
+        <!-- custom flat ui -->
+        <link href="/style/flat-ui.css" rel="stylesheet" type="text/css" />
+        <!-- bootstrap wysihtml5 - text editor -->
+        <link href="/style/css/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css" rel="stylesheet" type="text/css" />
+        <!-- Theme style -->
+        <link href="/style/css/AdminLTE.css" rel="stylesheet" type="text/css" />
+        <%--<link href="/style/custom.css" rel="stylesheet" type="text/css" />--%>
+
+       <%-- <link href="../style/custom.css" rel="stylesheet" type="text/css" />--%>
+
+        <!-- fullCalendar -->
+        <link href="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.0.2/fullcalendar.css" rel="stylesheet" type="text/css" />
+        <link href="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.0.2/fullcalendar.print.css" rel="stylesheet" type="text/css" media='print' />
+
+        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+          <script src="~/Content/js/html5shiv.js"></script>
+          <script src="~/Content/js/respond.min.js"></script>
+        <![endif]-->
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server">
+    <div>
+        <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+        
+        </asp:ContentPlaceHolder>
+    </div>
+    </form>
+</body>
+</html>

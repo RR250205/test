@@ -1,0 +1,11 @@
+E:\Maran\kolims\7-11-18\PRO-LMS20180001\STOMS.DA\bin\Release\STOMS.DA.dll
+E:\Maran\kolims\7-11-18\PRO-LMS20180001\STOMS.DA\bin\Release\STOMS.DA.pdb
+E:\Maran\kolims\7-11-18\PRO-LMS20180001\STOMS.DA\bin\Release\STOMS.BO.dll
+E:\Maran\kolims\7-11-18\PRO-LMS20180001\STOMS.DA\bin\Release\STOMS.Common.dll
+E:\Maran\kolims\7-11-18\PRO-LMS20180001\STOMS.DA\bin\Release\STOMS.BO.pdb
+E:\Maran\kolims\7-11-18\PRO-LMS20180001\STOMS.DA\bin\Release\STOMS.Common.pdb
+E:\Maran\kolims\7-11-18\PRO-LMS20180001\STOMS.DA\obj\Release\STOMS.DA.csprojAssemblyReference.cache
+E:\Maran\kolims\7-11-18\PRO-LMS20180001\STOMS.DA\obj\Release\STOMS.DA.csproj.CoreCompileInputs.cache
+E:\Maran\kolims\7-11-18\PRO-LMS20180001\STOMS.DA\obj\Release\STOMS.DA.csproj.CopyComplete
+E:\Maran\kolims\7-11-18\PRO-LMS20180001\STOMS.DA\obj\Release\STOMS.DA.dll
+E:\Maran\kolims\7-11-18\PRO-LMS20180001\STOMS.DA\obj\Release\STOMS.DA.pdb
